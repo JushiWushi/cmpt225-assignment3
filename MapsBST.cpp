@@ -49,9 +49,9 @@ MapBSTNode* MapsBST::insert(MapBSTNode* node, MapAsHex* valuePtr){
 };
 
 /*
-    Recursively searches the BST for all maps with a number of internal walls equal to 'key'.
-    Appends matching map pointers to the result vector.
-    Traverses left if key < node's value, right otherwise (even when matched, to find duplicates).
+    recursively searches the BST for all maps with a number of internal walls equal to 'key'
+    appends matching map pointers to the result vector
+    Traverses left if key < node's value, right otherwise (even when matched, to find duplicates)
 */
 void MapsBST::search(MapBSTNode* node, const int key, vector<MapAsHex*> &result) const{
     // if key < node walls, check left of node
@@ -73,8 +73,8 @@ void MapsBST::search(MapBSTNode* node, const int key, vector<MapAsHex*> &result)
 };
 
 /*
-    Recursively prints the BST using in-order traversal.
-    Outputs all maps in ascending order of internal walls.
+    Recursively prints the BST using in-order traversal
+    Outputs all maps in ascending order of internal walls
 */
 void MapsBST::print(MapBSTNode* node, ostream& os) const{
     // left
@@ -93,8 +93,8 @@ void MapsBST::print(MapBSTNode* node, ostream& os) const{
 };
 
 /*
-    Recursively performs in-order traversal to rank maps from least to most internal walls.
-    Appends map pointers to the result vector during traversal.
+    Recursively performs in-order traversal to rank maps from least to most internal walls
+    Appends map pointers to the result vector during traversal
 */
 void MapsBST::rank(MapBSTNode* node, vector<MapAsHex*> &result) const{
     // traverse left
@@ -112,8 +112,8 @@ void MapsBST::rank(MapBSTNode* node, vector<MapAsHex*> &result) const{
 };
 
 /*
-    Recursively destroys the BST using post-order traversal.
-    Frees memory for each node (but not the MapAsHex objects themselves).
+    Recursively destroys the BST using post-order traversal
+    Frees memory for each node
 */
 void MapsBST::destroy(MapBSTNode* node){
     if (node == nullptr) return;
@@ -134,8 +134,7 @@ void MapsBST::destroy(MapBSTNode* node){
 
 // PUBLIC:
 /*
-    Default constructor.
-    Initializes the BST as an empty tree with root set to nullptr and size set to 0.
+    Default constructor
 */
 MapsBST::MapsBST() {
     root = nullptr;
@@ -143,8 +142,7 @@ MapsBST::MapsBST() {
 };
 
 /*
-    Wrapper method for inserting a map into the BST.
-    Creates the root node if the tree is empty; otherwise, calls the private recursive insert.
+    Wrapper method for inserting a map into the BST
 */
 void MapsBST::insert(MapAsHex* valuePtr) {
     if (size == 0) {     
@@ -161,8 +159,8 @@ void MapsBST::insert(MapAsHex* valuePtr) {
 };
 
 /*
-    Wrapper method for searching the BST for maps with numberOfInternalWalls == key.
-    Returns a vector of matching MapAsHex* pointers (empty if not found).
+    Wrapper method for searching the BST for maps with numberOfInternalWalls == key
+    Returns a vector of matching MapAsHex* pointers (empty if not found)
 */
 vector<MapAsHex*> MapsBST::search(const int key) const{
     vector<MapAsHex*> matchList;
@@ -171,16 +169,16 @@ vector<MapAsHex*> MapsBST::search(const int key) const{
 };
 
 /*
-    Returns the number of nodes (maps) currently stored in the BST.
+    Returns the number of nodes stored in the BST
 */
 int MapsBST::getSize() const {
     return size;
 };
 
 /*
-    Wrapper method for printing all maps stored in the BST.
-    Uses in-order traversal to print maps in ascending order by internal wall count.
-    If the tree is empty, prints "Empty tree".
+    Wrapper method for printing all maps stored in the BST
+    Uses in-order traversal to print maps in ascending order by internal wall count
+    If the tree is empty, prints "Empty tree"
 */
 void MapsBST::print(ostream& os) const {
     if (size == 0) {
@@ -193,7 +191,7 @@ void MapsBST::print(ostream& os) const {
 
 /*
     Wrapper method that returns a vector of all map pointers ranked from smallest to largest
-    by number of internal walls using in-order traversal.
+    by number of internal walls using in-order traversal
 */
 vector<MapAsHex*> MapsBST::rank() const{
     vector<MapAsHex*> rankedList;
@@ -202,9 +200,8 @@ vector<MapAsHex*> MapsBST::rank() const{
 };
 
 /*
-    Destructor for MapsBST.
-    Uses post-order traversal to deallocate all BST nodes.
-    Note: The MapAsHex* objects are NOT deleted—only the tree structure is cleaned up.
+    Destructor for MapsBST
+    Uses post-order traversal to destroy all nodes
 */
 MapsBST::~MapsBST(){
     destroy(root);
